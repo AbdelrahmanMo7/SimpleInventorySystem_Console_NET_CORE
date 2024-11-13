@@ -24,17 +24,8 @@ namespace SimpleInventorySystem
 
                 .ConfigureLogging((hostContext, logging) =>
                 {
-                    // Suppress EF Core query execution logs (set to 'Warning' to hide 'Information' logs)
-                    logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning); // Hide 'Information' level logs from EF Core queries
-
-                    //// Optional: Suppress all 'Information' level logs globally, or adjust as needed
-                    //logging.AddFilter("Microsoft", LogLevel.Warning);  // Hide 'Information' logs from other Microsoft-related logs, like System.Data, etc.
-
-                    //// Optional: Add a filter for your application if you don't want certain categories to log 'Information'
-                    //logging.AddFilter("SimpleInventorySystem", LogLevel.Warning);  // Hide 'Information' logs for your app's category (if needed)
-
-                    //// Add console logging to output remaining logs to the console
-                    //logging.AddConsole();
+                    // Hide 'Information' level logs 
+                    logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning); 
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
@@ -51,21 +42,6 @@ namespace SimpleInventorySystem
                 });
 
             var host = builder.Build();
-
-        //   var serviceProvider = new ServiceCollection()
-         //.AddDbContext<InventoryContext>()
-         //.AddScoped<IUserInteraction, UserInteraction>()
-         //.AddScoped<IInventoryManagement, InventoryMansgement>()
-         //.AddScoped<IProductRepository, ProductRepository>()
-         //.AddScoped<ICategoryRepository, CategoryRepository>()
-         //.AddScoped(typeof(IRepository<Product>), typeof(Repository<Product>))
-         //.AddScoped(typeof(IRepository<Category>), typeof(Repository<Category>))
-         //.BuildServiceProvider();
-
-         //   var userInteraction = serviceProvider.GetService<IUserInteraction>();
-
-
-
 
             var userInteraction = host.Services.GetRequiredService<IUserInteraction>();
 

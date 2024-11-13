@@ -8,6 +8,7 @@ namespace SimpleInventorySystem.Interfaces
 {
     public interface IUserInteraction
     {
+        Task InteractWithUserAsync();
         Task DisplaySystemOptionsAsync();
         Task DisplayCategoriesAsync();
         Task DisplayProductsByCategoryAsync();
